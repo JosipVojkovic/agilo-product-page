@@ -1,18 +1,26 @@
 import Link from "next/link";
 import { Close } from "./icons/Close";
 import { Search } from "./icons/Search";
-import { ROUTES } from "@/constants/routes";
-import { ChevronDown } from "./icons/ChevronDown";
 
-export default function MobileMenu() {
+import { ChevronDown } from "./icons/ChevronDown";
+import { ROUTES } from "@/lib/constants/routes";
+
+export default function MobileMenu({
+  setIsMenuOpen,
+}: {
+  setIsMenuOpen: (isOpen: boolean) => void;
+}) {
   return (
-    <div className="fixed bg-foreground text-background top-0 left-0 h-full w-[300px]">
+    <div className="fixed bg-foreground text-background top-0 left-0 h-full w-full max-w-[300px]">
       <div className="flex justify-between items-center h-[72px] px-8 border-b border-background">
         <div className="flex items-center gap-2">
           <Search className="w-6 h-6 cursor-pointer" />
           <p>Search</p>
         </div>
-        <Close className="w-6 h-6 cursor-pointer" />
+        <Close
+          className="w-6 h-6 cursor-pointer"
+          onClick={() => setIsMenuOpen(false)}
+        />
       </div>
 
       <div className="flex flex-col h-[calc(100%-72px)] justify-between">
