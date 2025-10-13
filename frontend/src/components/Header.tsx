@@ -2,10 +2,11 @@ import { ROUTES } from "@/constants/routes";
 import Link from "next/link";
 import { Case } from "./icons/Case";
 import { Menu } from "./icons/Menu";
+import MobileMenu from "./MobileMenu";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-8 py-5 bg-white">
+    <header className="flex items-center justify-between px-8 h-[72px] bg-white">
       <div className="text-2xl font-medium">SofaSocietyCo.</div>
 
       <nav>
@@ -28,6 +29,8 @@ export default function Header() {
         <Case className="w-8 h-8 p-1 text-foreground cursor-pointer" />
         <Menu className="w-8 h-8 p-1 text-foreground cursor-pointer" />
       </div>
+
+      <MobileMenu />
     </header>
   );
 }
