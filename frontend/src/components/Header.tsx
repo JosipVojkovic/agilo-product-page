@@ -13,7 +13,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="flex items-center justify-between px-8 h-[72px] bg-white">
+    <header className="flex items-center justify-between px-8 h-[72px]">
       <div className="flex items-center text-2xl font-medium">
         SofaSocietyCo.
       </div>

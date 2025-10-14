@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export const Close: React.FC<React.ComponentPropsWithoutRef<"svg">> = (
   props
 ) => (

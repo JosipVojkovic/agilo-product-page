@@ -15,7 +15,7 @@ export default function MobileMenu({
       <div className="flex justify-between items-center h-[72px] px-8 border-b border-background">
         <div className="flex items-center gap-2">
           <Search className="w-5 h-5 cursor-pointer" />
-          <p>Search</p>
+          <p className="text-base">Search</p>
         </div>
         <Close
           className="w-6 h-6 cursor-pointer"
@@ -24,10 +24,10 @@ export default function MobileMenu({
       </div>
 
       <div className="flex flex-col h-[calc(100%-72px)] justify-between">
-        <ul className="flex-1 flex flex-col gap-8 text-3xl font-medium px-8 pt-8">
+        <ul className="flex-1 flex flex-col gap-8 text-custom-lg font-medium px-8 pt-8">
           <li>
             <Link href={ROUTES.ABOUT} onClick={() => setIsMenuOpen(false)}>
-              ABOUT
+              About
             </Link>
           </li>
           <li>
@@ -35,12 +35,12 @@ export default function MobileMenu({
               href={ROUTES.INSPIRATION}
               onClick={() => setIsMenuOpen(false)}
             >
-              INSPIRATION
+              Inspiration
             </Link>
           </li>
           <li>
             <Link href={ROUTES.SHOP} onClick={() => setIsMenuOpen(false)}>
-              SHOP
+              Shop
             </Link>
           </li>
         </ul>

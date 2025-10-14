@@ -13,22 +13,13 @@
 
   --color-foreground: #050505;
   --color-background: #fdfdfd;
-
-  --font-size-3xl: 3.5rem;
-  --font-size-2xl: 3rem;
-  --font-size-xl: 2.5rem;
-  --font-size-lg: 2rem;
-  --font-size-md: 1.5rem;
-  --font-size-sm: 1.125rem;
-  --font-size-base: 1rem;
-  --font-size-xs: 0.75rem;
-  --font-size-2xs: 0.625rem;
 }
 
 @layer base {
   body {
     font-family: "Mona Sans", sans-serif;
     font-weight: normal;
+    background-color: var(--color-background);
   }
 
   h1,
@@ -38,5 +29,35 @@
   h5,
   h6 {
     font-weight: 500;
+  }
+}
+
+@layer utilities {
+  .text-custom-3xl {
+    font-size: 56px;
+  }
+  .text-custom-2xl {
+    font-size: 48px;
+  }
+  .text-custom-xl {
+    font-size: 40px;
+  }
+  .text-custom-lg {
+    font-size: 32px;
+  }
+  .text-custom-md {
+    font-size: 24px;
+  }
+  .text-custom-sm {
+    font-size: 18px;
+  }
+  .text-custom-base {
+    font-size: 16px;
+  }
+  .text-custom-xs {
+    font-size: 12px;
+  }
+  .text-custom-2xs {
+    font-size: 10px;
   }
 }

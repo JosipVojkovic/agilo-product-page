@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export const ChevronDown: React.FC<React.ComponentPropsWithoutRef<"svg">> = (
   props
 ) => (
