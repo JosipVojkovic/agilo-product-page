@@ -1,5 +1,6 @@
 import { ChevronDown } from "./icons/ChevronDown";
 import { Plus } from "./icons/Plus";
+import ProductCard from "./ProductCard";
 
 export default function ProductsSection() {
   return (
@@ -13,6 +14,30 @@ export default function ProductsSection() {
         <button className="w-[84px] h-[33px] flex justify-center items-center gap-1 px-3 py-2 border border-[#D1D1D1] rounded-sm cursor-pointer text-custom-xs">
           Sort <ChevronDown className="w-4 h-4 text-[#808080]" />
         </button>
+      </div>
+
+      <div className="grid grid-cols-2 gap-x-4 gap-y-12">
+        <ProductCard
+          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
+        />
+        <ProductCard
+          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
+        />
+        <ProductCard
+          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
+        />
+        <ProductCard
+          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
+        />
+        <ProductCard
+          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
+        />
+        <ProductCard
+          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
+        />
+        <ProductCard
+          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
+        />
       </div>
     </section>
   );
