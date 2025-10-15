@@ -1,8 +1,13 @@
+import { getProducts } from "@/lib/data/products";
 import { ChevronDown } from "./icons/ChevronDown";
 import { Plus } from "./icons/Plus";
 import ProductCard from "./ProductCard";
 
-export default function ProductsSection() {
+export default async function ProductsSection() {
+  const { response, nextPage } = await getProducts({ pageParam: 1 });
+
+  console.log("response", response, nextPage);
+
   return (
     <section className="flex flex-col gap-6">
       <h2 className="text-custom-md">Shop List</h2>
@@ -17,27 +22,17 @@ export default function ProductsSection() {
       </div>
 
       <div className="grid grid-cols-2 gap-x-4 gap-y-12">
-        <ProductCard
-          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
-        />
-        <ProductCard
-          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
-        />
-        <ProductCard
-          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
-        />
-        <ProductCard
-          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
-        />
-        <ProductCard
-          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
-        />
-        <ProductCard
-          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
-        />
-        <ProductCard
-          product={{ name: "Nordic Haven", price: 1000, image: "/sofa.svg" }}
-        />
+        {response.products.map((p) => (
+          <ProductCard
+            key={p.id}
+            product={{
+              handle: p.handle,
+              title: p.title,
+              price: 1000,
+              image: p.thumbnail || "/sofa.svg",
+            }}
+          />
+        ))}
       </div>
     </section>
   );
