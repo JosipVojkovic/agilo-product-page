@@ -3,8 +3,8 @@ type Routes = {
   ABOUT: string;
   INSPIRATION: string;
   SHOP: string;
-  PRODUCT: (id: string) => string;
-  COLLECTION: (id: string) => string;
+  PRODUCT: (handle: string) => string;
+  COLLECTION: (handle: string) => string;
   CART: string;
 };
 
@@ -13,7 +13,7 @@ export const ROUTES: Routes = {
   ABOUT: "/about",
   INSPIRATION: "/inspiration",
   SHOP: "/shop",
-  PRODUCT: (id: string) => `/product/${id}`,
-  COLLECTION: (id: string) => `/collection/${id}`,
+  PRODUCT: (handle: string) => `/product/${handle}`,
+  COLLECTION: (handle: string) => `/collection/${handle}`,
   CART: "/cart",
 };
