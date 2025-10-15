@@ -5,15 +5,30 @@ import { Case } from "./icons/Case";
 import { Menu } from "./icons/Menu";
 import MobileMenu from "./MobileMenu";
 import { ROUTES } from "@/lib/constants/routes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search } from "./icons/Search";
 import { ChevronDown } from "./icons/ChevronDown";
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 0);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="flex items-center justify-between px-8 h-[72px] bg-white">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 h-[72px] 
+        ${
+          scrolled
+            ? `bg-background border-b border-b-[#F4F4F4]`
+            : "bg-transparent"
+        }
+      `}
+    >
       <div className="flex items-center text-2xl font-medium">
         SofaSocietyCo.
       </div>
