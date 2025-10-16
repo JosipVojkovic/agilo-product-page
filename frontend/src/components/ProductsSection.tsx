@@ -9,7 +9,7 @@ export default async function ProductsSection() {
   console.log("response", response, nextPage);
 
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-6 px-4">
       <h2 className="text-custom-md">Shop List</h2>
 
       <div className="flex justify-between gap-3">

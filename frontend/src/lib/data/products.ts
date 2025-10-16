@@ -59,8 +59,7 @@ export const getProductFromHandle = async (handle: string) => {
     query: {
       handle,
       region_id: regions?.[0]?.id,
-      fields:
-        "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+deleted_at",
+      fields: "*variants.calculated_price,+variants.inventory_quantity",
     },
     cache: "reload",
   });
