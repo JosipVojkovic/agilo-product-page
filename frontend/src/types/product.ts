@@ -44,3 +44,8 @@ export type Product = {
   images: [ProductImage];
   variants: [ProductVariant];
 };
+
+export type SelectedOptions = {
+  material: string | null;
+  color: string | null;
+};
