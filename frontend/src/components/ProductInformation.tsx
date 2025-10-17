@@ -1,6 +1,8 @@
 import { StoreProduct } from "@medusajs/types";
 import CustomSelect from "./ui/CustomSelect";
 import { SelectedOptions } from "@/types/product";
+import { CustomSelectOption } from "@/types/ui";
+import ColorPicker from "./ui/ColorPicker";
 
 type ProductInformationProps = {
   product: StoreProduct | null;
@@ -16,6 +18,24 @@ export default function ProductInformation({
   selectedOptions,
   handleOptionChange,
 }: ProductInformationProps) {
+  const customSelectOption: CustomSelectOption | null = product?.options?.[1]
+    ? {
+        id: product.options[1].id,
+        title: product.options[1].title,
+        values:
+          product.options[1].values?.map((v) => ({
+            id: v.id,
+            value: v.value,
+          })) ?? [],
+      }
+    : null;
+
+  const colorOption =
+    product?.options?.[0].values?.map((v) => ({
+      id: v.id,
+      value: v.value,
+    })) ?? [];
+
   return (
     <div className="flex flex-col gap-8 px-4">
       <div className="flex flex-col gap-8">
@@ -28,21 +48,18 @@ export default function ProductInformation({
         <p className="text-[#808080] text-custom-xs">{product?.description}</p>
       </div>
 
-      <div className="flex flex-col gap-4">
-        <p className="flex gap-6">
-          <span>Materials</span>
-          <span className="text-[#808080]">{selectedOptions.material}</span>
-        </p>
+      <CustomSelect
+        defaultText="Choose Material"
+        option={customSelectOption}
+        selectedValue={selectedOptions.material}
+        handleOptionChange={(value) => handleOptionChange("material", value)}
+      />
 
-        <CustomSelect
-          defaultText="Choose Material"
-          options={["Linen", "Cotton", "Silk"]}
-          selectedValue={selectedOptions.material}
-          handleOptionChange={(value) => handleOptionChange("material", value)}
-        />
-      </div>
-
-      <div></div>
+      <ColorPicker
+        selectedOptions={selectedOptions}
+        optionValues={colorOption}
+        handleOptionChange={(value) => handleOptionChange("color", value)}
+      />
 
       <div></div>
     </div>

@@ -2,17 +2,18 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "../icons/ChevronDown";
+import { CustomSelectOption } from "@/types/ui";
 
 type CustomSelectProps = {
   defaultText: string;
-  options: string[];
+  option: CustomSelectOption | null;
   selectedValue: string | null;
   handleOptionChange: (value: string | null) => void;
 };
 
 export default function CustomSelect({
   defaultText,
-  options,
+  option,
   selectedValue,
   handleOptionChange,
 }: CustomSelectProps) {
@@ -42,28 +43,34 @@ export default function CustomSelect({
   }, []);
 
   return (
-    <div ref={selectRef} className="relative">
-      <div
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-between cursor-pointer border border-[#D1D1D1] px-4 py-2 rounded"
-      >
-        <p>{selectedValue ? selectedValue : defaultText}</p>
-        <ChevronDown className="w-6 h-6 cursor-pointer text-[#808080" />
-      </div>
+    <div className="flex flex-col gap-4">
+      <p className="flex gap-6">
+        <span>{option?.title}</span>
+        <span className="text-[#808080]">{selectedValue}</span>
+      </p>
+      <div ref={selectRef} className="relative">
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex justify-between cursor-pointer border border-[#D1D1D1] px-4 py-2 rounded"
+        >
+          <p>{selectedValue ? selectedValue : defaultText}</p>
+          <ChevronDown className="w-6 h-6 cursor-pointer text-[#808080" />
+        </div>
 
-      {isOpen && (
-        <ul className="absolute top-full left-0 w-full border border-[#D1D1D1] rounded mt-1 z-10">
-          {options.map((option, index) => (
-            <li
-              key={index}
-              onClick={() => selectValue(option)}
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-            >
-              {option}
-            </li>
-          ))}
-        </ul>
-      )}
+        {isOpen && (
+          <ul className="absolute top-full left-0 w-full border border-[#D1D1D1] rounded mt-1 z-10 bg-background">
+            {option?.values.map((ov) => (
+              <li
+                key={ov.id}
+                onClick={() => selectValue(ov.value)}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                {ov.value}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
