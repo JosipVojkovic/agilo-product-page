@@ -8,7 +8,7 @@ export type ProductOptionValue = {
 export type ProductOption = {
   id: string;
   title: string;
-  values: [ProductOptionValue];
+  values: ProductOptionValue[];
 };
 
 export type ProductImage = {
@@ -40,12 +40,12 @@ export type Product = {
   thumbnail: string;
   collection_id: string;
   collection: CollectionType;
-  options: [ProductOption];
-  images: [ProductImage];
-  variants: [ProductVariant];
+  options: ProductOption[];
+  images: ProductImage[];
+  variants: ProductVariant[];
 };
 
 export type SelectedOptions = {
-  material: string | null;
-  color: string | null;
+  material: { valueId: string; value: string };
+  color: { valueId: string; value: string };
 };

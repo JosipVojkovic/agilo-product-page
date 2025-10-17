@@ -16,17 +16,18 @@ type ProductPageProps = {
 export default function ProductPage({ params }: ProductPageProps) {
   const [product, setProduct] = useState<StoreProduct | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({
-    material: null,
-    color: null,
+    material: { valueId: "", value: "" },
+    color: { valueId: "", value: "" },
   });
   const [quantity, setQuantity] = useState(1);
   const { handle } = use(params);
 
   const handleOptionChange = (
     option: keyof SelectedOptions,
-    value: string | null
+    valueId: string,
+    value: string
   ) => {
-    setSelectedOptions((prev) => ({ ...prev, [option]: value }));
+    setSelectedOptions((prev) => ({ ...prev, [option]: { valueId, value } }));
   };
 
   useEffect(() => {

@@ -2,13 +2,13 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "../icons/ChevronDown";
-import { CustomSelectOption } from "@/types/ui";
+import { ProductOption } from "@/types/product";
 
 type CustomSelectProps = {
   defaultText: string;
-  option: CustomSelectOption | null;
+  option: ProductOption | null;
   selectedValue: string | null;
-  handleOptionChange: (value: string | null) => void;
+  handleOptionChange: (valueId: string, value: string) => void;
 };
 
 export default function CustomSelect({
@@ -20,8 +20,8 @@ export default function CustomSelect({
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
-  const selectValue = (option: string) => {
-    handleOptionChange(option);
+  const selectValue = (valueId: string, value: string) => {
+    handleOptionChange(valueId, value);
     setIsOpen(false);
   };
 
@@ -62,7 +62,7 @@ export default function CustomSelect({
             {option?.values.map((ov) => (
               <li
                 key={ov.id}
-                onClick={() => selectValue(ov.value)}
+                onClick={() => selectValue(ov.id, ov.value)}
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
               >
                 {ov.value}
