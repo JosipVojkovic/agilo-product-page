@@ -3,6 +3,9 @@ import CustomSelect from "./ui/CustomSelect";
 import { SelectedOptions } from "@/types/product";
 import { CustomSelectOption } from "@/types/ui";
 import ColorPicker from "./ui/ColorPicker";
+import { Minus } from "./icons/Minus";
+import { Plus } from "./icons/Plus";
+import AddToCartControls from "./AddToCartControls";
 
 type ProductInformationProps = {
   product: StoreProduct | null;
@@ -11,12 +14,16 @@ type ProductInformationProps = {
     option: "material" | "color",
     value: string | null
   ) => void;
+  quantity: number;
+  setQuantity: (quantity: number) => void;
 };
 
 export default function ProductInformation({
   product,
   selectedOptions,
   handleOptionChange,
+  quantity,
+  setQuantity,
 }: ProductInformationProps) {
   const customSelectOption: CustomSelectOption | null = product?.options?.[1]
     ? {
@@ -61,7 +68,11 @@ export default function ProductInformation({
         handleOptionChange={(value) => handleOptionChange("color", value)}
       />
 
-      <div></div>
+      <AddToCartControls
+        quantity={quantity}
+        setQuantity={setQuantity}
+        selectedOptions={selectedOptions}
+      />
     </div>
   );
 }

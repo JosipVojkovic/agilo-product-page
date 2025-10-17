@@ -19,6 +19,7 @@ export default function ProductPage({ params }: ProductPageProps) {
     material: null,
     color: null,
   });
+  const [quantity, setQuantity] = useState(1);
   const { handle } = use(params);
 
   const handleOptionChange = (
@@ -45,6 +46,8 @@ export default function ProductPage({ params }: ProductPageProps) {
           product={product}
           selectedOptions={selectedOptions}
           handleOptionChange={handleOptionChange}
+          quantity={quantity}
+          setQuantity={setQuantity}
         />
       </section>
     </main>
