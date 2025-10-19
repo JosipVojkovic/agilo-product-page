@@ -34,7 +34,7 @@ export const getProducts = async ({
         "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags",
       ...queryParams,
     },
-    cache: "reload",
+    cache: "no-store",
   });
 
   const nextPage = count > offset + limit ? pageParam + 1 : null;

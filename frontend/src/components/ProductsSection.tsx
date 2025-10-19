@@ -6,8 +6,6 @@ import ProductCard from "./ProductCard";
 export default async function ProductsSection() {
   const { response, nextPage } = await getProducts({ pageParam: 1 });
 
-  console.log("response", response, nextPage);
-
   return (
     <section className="flex flex-col gap-6 px-4">
       <h2 className="text-custom-md">Shop List</h2>
@@ -21,7 +19,7 @@ export default async function ProductsSection() {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-4 gap-y-12">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-12">
         {response.products.map((p) => (
           <ProductCard
             key={p.id}

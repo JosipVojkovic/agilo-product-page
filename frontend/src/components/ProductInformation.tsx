@@ -1,11 +1,11 @@
-import { StoreProduct } from "@medusajs/types";
+import { HttpTypes, StoreProduct } from "@medusajs/types";
 import CustomSelect from "./ui/CustomSelect";
 import { SelectedOptions } from "@/types/product";
 import ColorPicker from "./ui/ColorPicker";
 import AddToCartControls from "./AddToCartControls";
 import { getProductPrice } from "@/lib/util/get-product-prices";
-import { getProductOptionValue } from "@/lib/util/get-product-option-value";
 import { getProductOption } from "@/lib/util/get-product-option";
+import { getVariantByOptionValueIds } from "@/lib/util/get-product-variant";
 
 type ProductInformationProps = {
   product: StoreProduct | null;
@@ -26,10 +26,20 @@ export default function ProductInformation({
   quantity,
   setQuantity,
 }: ProductInformationProps) {
-  const customSelectOption = getProductOption(product, 1);
-  const colorOption = getProductOption(product, 0);
+  const customSelectOption = getProductOption(product, "material");
+  const colorOption = getProductOption(product, "color");
 
-  const price = product ? getProductPrice({ product }) : null;
+  const variant: HttpTypes.StoreProductVariant | null =
+    getVariantByOptionValueIds(product, [
+      selectedOptions.material.valueId,
+      selectedOptions.color.valueId,
+    ]);
+  const prices = product
+    ? getProductPrice({ product, variantId: variant?.id })
+    : null;
+  const shownPrice = prices?.variantPrice
+    ? prices.variantPrice.calculated_price_number
+    : prices?.cheapestPrice?.calculated_price_number;
 
   return (
     <div className="flex flex-col gap-8 px-4">
@@ -38,7 +48,7 @@ export default function ProductInformation({
           <p className="text-[#808080]">{product?.collection?.title}</p>
           <h3 className="text-custom-md font-semibold">{product?.title}</h3>
           <p className="text-custom-md">
-            €{price?.cheapestPrice?.calculated_price_number}
+            {prices?.variantPrice ? `€${shownPrice}` : `From €${shownPrice}`}
           </p>
         </div>
 
@@ -63,6 +73,7 @@ export default function ProductInformation({
       />
 
       <AddToCartControls
+        variant={variant}
         quantity={quantity}
         setQuantity={setQuantity}
         selectedOptions={selectedOptions}

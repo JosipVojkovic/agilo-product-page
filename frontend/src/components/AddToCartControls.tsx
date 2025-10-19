@@ -1,24 +1,44 @@
+"use-client";
+
 import { SelectedOptions } from "@/types/product";
 import { Minus } from "./icons/Minus";
 import { Plus } from "./icons/Plus";
+import { HttpTypes } from "@medusajs/types";
+import { addToCart } from "@/lib/data/cart";
+import { useCart } from "@/lib/context/CartContext";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/lib/constants/routes";
 
 type AddToCartControlsProps = {
+  variant: HttpTypes.StoreProductVariant | null;
   quantity: number;
   setQuantity: (quantity: number) => void;
   selectedOptions: SelectedOptions;
 };
 
 export default function AddToCartControls({
+  variant,
   quantity,
   setQuantity,
   selectedOptions,
 }: AddToCartControlsProps) {
+  const cart = useCart();
+  const router = useRouter();
+
   const handleDecreaseQuantity = () => {
     setQuantity(quantity > 1 ? quantity - 1 : quantity);
   };
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
+  };
+
+  const handleAddToCart = async () => {
+    if (!variant?.id) return;
+
+    await addToCart({ variantId: variant.id, quantity });
+    await cart.refreshCartQuantity();
+    router.push(ROUTES.SHOP);
   };
 
   const isOptionsSelected = Boolean(
@@ -45,6 +65,7 @@ export default function AddToCartControls({
           !isOptionsSelected ? "cursor-default" : "cursor-pointer"
         }`}
         disabled={!isOptionsSelected}
+        onClick={handleAddToCart}
       >
         {isOptionsSelected ? "Add to cart" : "Select variant"}
       </button>

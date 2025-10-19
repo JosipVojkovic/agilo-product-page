@@ -3,13 +3,19 @@ import { HttpTypes } from "@medusajs/types";
 
 export const getProductOption = (
   product: HttpTypes.StoreProduct | null,
-  optionIndex: number
+  optionTitle: string
 ): ProductOption | null => {
-  if (!product || !product.options || !product.options[optionIndex]) {
+  if (!product || !product.options || !product.options.length) {
     return null;
   }
 
-  const option = product.options[optionIndex];
+  const option = product.options.find(
+    (o) => o.title.toLowerCase() === optionTitle.toLowerCase()
+  );
+
+  if (!option) {
+    return null;
+  }
 
   return {
     id: option.id,

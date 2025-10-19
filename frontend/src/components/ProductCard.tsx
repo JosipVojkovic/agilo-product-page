@@ -12,7 +12,7 @@ export default function ProductCard({
         <img
           src={product.image}
           alt={product.title}
-          className="w-full h-auto"
+          className="w-full h-[163px] object-cover sm:h-[286px]"
         />
 
         <div className="flex flex-col gap-1 text-custom-xs">
