@@ -4,14 +4,24 @@ Testni zadatak za Agilo – izrada Product stranice u Next.js, TypeScriptu i Tai
 ## Upute za pokretanje
 
 1. **Clone repozitorija**
-   - Kloniraj repozitorij: `git clone <link_na_repo>`
-   - Uđi u direktorij projekta: `cd agilo-product-page`
+   - Kloniraj repozitorij i uđi u direktorij projekta:
+     ```
+     git clone <link_na_repo>
+     cd agilo-product-page
+     ```
 
 2. **Backend**
-   - Uđi u backend direktorij: `cd backend`
-   - Instaliraj sve dependencije: `npm install`
-   - Kopiraj `.env.template` u `.env` i popuni potrebne varijable, npr. `DATABASE_URL` i `JWT_SECRET`.
-   - Pokreni backend server: `npm run start`
+   - Uđi u backend direktorij i instaliraj sve dependecije:
+     ```
+     cd backend
+     npm install
+     ```
+   - Kopiraj `.env.template` u `.env` i unesi svoj `DATABASE_URL` (moraš imati kreiranu bazu podataka):
+     ```
+     DATABASE_URL=<tvoj_db_url>
+     ```
+   - Pokreni backend server:
+     ```npm run dev```
    - Nakon pokretanja backend servera, u konzoli će se prikazati publishable key koji trebaš koristiti za frontend.
 
 3. **Frontend**
