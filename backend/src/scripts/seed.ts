@@ -89,7 +89,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
   await createTaxRegionsWorkflow(container).run({
     input: countries.map((country_code) => ({
       country_code,
-      provider_id: "tp_system"
+      provider_id: "tp_system",
     })),
   });
   logger.info("Finished seeding tax regions.");
@@ -133,22 +133,22 @@ export default async function seedDemoData({ container }: ExecArgs) {
 
   logger.info("Seeding fulfillment data...");
   const shippingProfiles = await fulfillmentModuleService.listShippingProfiles({
-    type: "default"
-  })
-  let shippingProfile = shippingProfiles.length ? shippingProfiles[0] : null
+    type: "default",
+  });
+  let shippingProfile = shippingProfiles.length ? shippingProfiles[0] : null;
 
   if (!shippingProfile) {
     const { result: shippingProfileResult } =
-    await createShippingProfilesWorkflow(container).run({
-      input: {
-        data: [
-          {
-            name: "Default Shipping Profile",
-            type: "default",
-          },
-        ],
-      },
-    });
+      await createShippingProfilesWorkflow(container).run({
+        input: {
+          data: [
+            {
+              name: "Default Shipping Profile",
+              type: "default",
+            },
+          ],
+        },
+      });
     shippingProfile = shippingProfileResult[0];
   }
 
@@ -338,6 +338,10 @@ export default async function seedDemoData({ container }: ExecArgs) {
           name: "Merch",
           is_active: true,
         },
+        {
+          name: "Sofas",
+          is_active: true,
+        },
       ],
     },
   });
@@ -346,181 +350,88 @@ export default async function seedDemoData({ container }: ExecArgs) {
     input: {
       products: [
         {
-          title: "Medusa T-Shirt",
+          title: "Paloma Haven 4",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Shirts")!.id,
+            categoryResult.find((cat) => cat.name === "Sofas")!.id,
           ],
           description:
-            "Reimagine the feeling of a classic T-shirt. With our cotton T-shirts, everyday essentials no longer have to be ordinary.",
-          handle: "t-shirt",
+            "Minimalistic designs, neutral colors, and high-quality textures. Perfect for those who seek comfort with a clean and understated aesthetic. This collection brings the essence of Scandinavian elegance to your living room.",
+          handle: "paloma-haven-4",
           weight: 400,
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-black-front.png",
+              url: "/static/1760446178782-Image.svg",
             },
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-black-back.png",
+              url: "/static/1760446178785-Image02.svg",
             },
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-white-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-white-back.png",
+              url: "/static/1760446593172-Image02.svg",
             },
           ],
           options: [
             {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
+              title: "Material",
+              values: ["Linen"],
             },
             {
               title: "Color",
-              values: ["Black", "White"],
+              values: ["Red", "Blue", "Green"],
             },
           ],
           variants: [
             {
-              title: "S / Black",
-              sku: "SHIRT-S-BLACK",
+              title: "Linen / Red",
+              sku: "PALOMA-HAVEN-LINEN-RED",
               options: {
-                Size: "S",
-                Color: "Black",
+                Material: "Linen",
+                Color: "Red",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 10000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 15000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "S / White",
-              sku: "SHIRT-S-WHITE",
+              title: "Linen / Blue",
+              sku: "PALOMA-HAVEN-LINEN-LIGHT-BLUE",
               options: {
-                Size: "S",
-                Color: "White",
+                Material: "Linen",
+                Color: "Blue",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 11000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 16000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "M / Black",
-              sku: "SHIRT-M-BLACK",
+              title: "Linen / Green",
+              sku: "PALOMA-HAVEN-BOUCLE-GREEN",
               options: {
-                Size: "M",
-                Color: "Black",
+                Material: "Linen",
+                Color: "Green",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 13000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "M / White",
-              sku: "SHIRT-M-WHITE",
-              options: {
-                Size: "M",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "L / Black",
-              sku: "SHIRT-L-BLACK",
-              options: {
-                Size: "L",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "L / White",
-              sku: "SHIRT-L-WHITE",
-              options: {
-                Size: "L",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL / Black",
-              sku: "SHIRT-XL-BLACK",
-              options: {
-                Size: "XL",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL / White",
-              sku: "SHIRT-XL-WHITE",
-              options: {
-                Size: "XL",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
+                  amount: 17000,
                   currency_code: "usd",
                 },
               ],
@@ -533,95 +444,103 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
         },
         {
-          title: "Medusa Sweatshirt",
+          title: "Paloma Haven 3",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Sweatshirts")!.id,
+            categoryResult.find((cat) => cat.name === "Sofas")!.id,
           ],
           description:
-            "Reimagine the feeling of a classic sweatshirt. With our cotton sweatshirt, everyday essentials no longer have to be ordinary.",
-          handle: "sweatshirt",
+            "Minimalistic designs, neutral colors, and high-quality textures. Perfect for those who seek comfort with a clean and understated aesthetic. This collection brings the essence of Scandinavian elegance to your living room.",
+          handle: "paloma-haven-3",
           weight: 400,
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-front.png",
+              url: "/static/1760560978108-6620ea897d26d568997efa34abc517d9177df473 (1).jpg",
             },
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png",
+              url: "/static/1760446178785-Image02.svg",
             },
           ],
           options: [
             {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
+              title: "Material",
+              values: ["Linen", "Boucle"],
+            },
+            {
+              title: "Color",
+              values: ["Gray", "Light Gray"],
             },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SWEATSHIRT-S",
+              title: "Linen / Gray",
+              sku: "PALOMA-HAVEN-LINEN-GRAY",
               options: {
-                Size: "S",
+                Material: "Linen",
+                Color: "Gray",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 10000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 15000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "M",
-              sku: "SWEATSHIRT-M",
+              title: "Linen / Light Gray",
+              sku: "PALOMA-HAVEN-LINEN-LIGHT-GRAY",
               options: {
-                Size: "M",
+                Material: "Linen",
+                Color: "Light Gray",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 11000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 16000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "L",
-              sku: "SWEATSHIRT-L",
+              title: "Boucle / Gray",
+              sku: "PALOMA-HAVEN-BOUCLE-GRAY",
               options: {
-                Size: "L",
+                Material: "Boucle",
+                Color: "Gray",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 13000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 17000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "XL",
-              sku: "SWEATSHIRT-XL",
+              title: "Boucle / Light Gray",
+              sku: "PALOMA-HAVEN-BOUCLE-LIGHT-GRAY",
               options: {
-                Size: "XL",
+                Material: "Boucle",
+                Color: "Light Gray",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 14000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 18000,
                   currency_code: "usd",
                 },
               ],
@@ -634,95 +553,91 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
         },
         {
-          title: "Medusa Sweatpants",
+          title: "Paloma Haven 2",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Pants")!.id,
+            categoryResult.find((cat) => cat.name === "Sofas")!.id,
           ],
           description:
-            "Reimagine the feeling of classic sweatpants. With our cotton sweatpants, everyday essentials no longer have to be ordinary.",
-          handle: "sweatpants",
+            "Minimalistic designs, neutral colors, and high-quality textures. Perfect for those who seek comfort with a clean and understated aesthetic. This collection brings the essence of Scandinavian elegance to your living room.",
+          handle: "paloma-haven-2",
           weight: 400,
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatpants-gray-front.png",
+              url: "/static/1760560978108-6620ea897d26d568997efa34abc517d9177df473 (1).jpg",
             },
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatpants-gray-back.png",
+              url: "/static/1760446178785-Image02.svg",
+            },
+            {
+              url: "/static/1760740407012-Image.svg",
+            },
+            {
+              url: "/static/1760560944398-Image (1).svg",
             },
           ],
           options: [
             {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
+              title: "Material",
+              values: ["Linen"],
+            },
+            {
+              title: "Color",
+              values: ["Red", "Blue", "Green"],
             },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SWEATPANTS-S",
+              title: "Linen / Red",
+              sku: "PALOMA-HAVEN-LINEN-RED",
               options: {
-                Size: "S",
+                Material: "Linen",
+                Color: "Red",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 10000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 15000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "M",
-              sku: "SWEATPANTS-M",
+              title: "Linen / Blue",
+              sku: "PALOMA-HAVEN-LINEN-LIGHT-BLUE",
               options: {
-                Size: "M",
+                Material: "Linen",
+                Color: "Blue",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 11000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 16000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "L",
-              sku: "SWEATPANTS-L",
+              title: "Linen / Green",
+              sku: "PALOMA-HAVEN-BOUCLE-GREEN",
               options: {
-                Size: "L",
+                Material: "Linen",
+                Color: "Green",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 13000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL",
-              sku: "SWEATPANTS-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
+                  amount: 17000,
                   currency_code: "usd",
                 },
               ],
@@ -735,95 +650,103 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
         },
         {
-          title: "Medusa Shorts",
+          title: "Paloma Haven",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Merch")!.id,
+            categoryResult.find((cat) => cat.name === "Sofas")!.id,
           ],
           description:
-            "Reimagine the feeling of classic shorts. With our cotton shorts, everyday essentials no longer have to be ordinary.",
-          handle: "shorts",
+            "Minimalistic designs, neutral colors, and high-quality textures. Perfect for those who seek comfort with a clean and understated aesthetic. This collection brings the essence of Scandinavian elegance to your living room.",
+          handle: "paloma-haven",
           weight: 400,
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/shorts-vintage-front.png",
+              url: "/static/1760560978108-6620ea897d26d568997efa34abc517d9177df473 (1).jpg",
             },
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/shorts-vintage-back.png",
+              url: "/static/1760446178785-Image02.svg",
             },
           ],
           options: [
             {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
+              title: "Material",
+              values: ["Linen", "Boucle"],
+            },
+            {
+              title: "Color",
+              values: ["Gray", "Light Gray"],
             },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SHORTS-S",
+              title: "Linen / Gray",
+              sku: "PALOMA-HAVEN-LINEN-GRAY",
               options: {
-                Size: "S",
+                Material: "Linen",
+                Color: "Gray",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 10000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 15000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "M",
-              sku: "SHORTS-M",
+              title: "Linen / Light Gray",
+              sku: "PALOMA-HAVEN-LINEN-LIGHT-GRAY",
               options: {
-                Size: "M",
+                Material: "Linen",
+                Color: "Light Gray",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 11000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 16000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "L",
-              sku: "SHORTS-L",
+              title: "Boucle / Gray",
+              sku: "PALOMA-HAVEN-BOUCLE-GRAY",
               options: {
-                Size: "L",
+                Material: "Boucle",
+                Color: "Gray",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 13000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 17000,
                   currency_code: "usd",
                 },
               ],
             },
             {
-              title: "XL",
-              sku: "SHORTS-XL",
+              title: "Boucle / Light Gray",
+              sku: "PALOMA-HAVEN-BOUCLE-LIGHT-GRAY",
               options: {
-                Size: "XL",
+                Material: "Boucle",
+                Color: "Light Gray",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 14000,
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
+                  amount: 18000,
                   currency_code: "usd",
                 },
               ],
