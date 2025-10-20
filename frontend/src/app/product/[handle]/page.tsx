@@ -39,23 +39,23 @@ export default function ProductPage({ params }: ProductPageProps) {
     fetchData();
   }, [handle]);
 
+  if (!product) {
+    return <Loader />;
+  }
+
   return (
     <main className="flex flex-col mt-[72px] md:mt-[144px]">
-      {!product ? (
-        <Loader />
-      ) : (
-        <section className="flex flex-col gap-8 md:flex-row md:px-16">
-          <ProductImageCarousel product={product} />
+      <section className="flex flex-col gap-8 md:flex-row md:px-16">
+        <ProductImageCarousel product={product} />
 
-          <ProductInformation
-            product={product}
-            selectedOptions={selectedOptions}
-            handleOptionChange={handleOptionChange}
-            quantity={quantity}
-            setQuantity={setQuantity}
-          />
-        </section>
-      )}
+        <ProductInformation
+          product={product}
+          selectedOptions={selectedOptions}
+          handleOptionChange={handleOptionChange}
+          quantity={quantity}
+          setQuantity={setQuantity}
+        />
+      </section>
     </main>
   );
 }
