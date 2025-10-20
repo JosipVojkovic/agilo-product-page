@@ -1,3 +1,4 @@
+import { getColor } from "@/lib/util/get-color.ts";
 import { ProductOption, SelectedOptions } from "@/types/product";
 
 type ColorPickerProps = {
@@ -22,7 +23,8 @@ export default function ColorPicker({
         {option?.values.map((ov) => (
           <div key={ov.id} className="flex flex-col gap-2 w-[32px]">
             <div
-              className="w-full h-[32px] bg-gray-500 cursor-pointer"
+              className="w-full h-[32px] cursor-pointer"
+              style={{ backgroundColor: getColor(ov.value) }}
               onClick={() => handleOptionChange(ov.id, ov.value)}
             ></div>
             <div

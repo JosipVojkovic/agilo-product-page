@@ -6,6 +6,7 @@ import { StoreProduct } from "@medusajs/types";
 import ProductImageCarousel from "@/components/ProductImageCarousel";
 import ProductInformation from "@/components/ProductInformation";
 import { SelectedOptions } from "@/types/product";
+import Loader from "@/components/Loader";
 
 type ProductPageProps = {
   params: Promise<{
@@ -40,17 +41,21 @@ export default function ProductPage({ params }: ProductPageProps) {
 
   return (
     <main className="flex flex-col mt-[72px] md:mt-[144px]">
-      <section className="flex flex-col gap-8 md:flex-row md:px-16">
-        <ProductImageCarousel product={product} />
+      {!product ? (
+        <Loader />
+      ) : (
+        <section className="flex flex-col gap-8 md:flex-row md:px-16">
+          <ProductImageCarousel product={product} />
 
-        <ProductInformation
-          product={product}
-          selectedOptions={selectedOptions}
-          handleOptionChange={handleOptionChange}
-          quantity={quantity}
-          setQuantity={setQuantity}
-        />
-      </section>
+          <ProductInformation
+            product={product}
+            selectedOptions={selectedOptions}
+            handleOptionChange={handleOptionChange}
+            quantity={quantity}
+            setQuantity={setQuantity}
+          />
+        </section>
+      )}
     </main>
   );
 }

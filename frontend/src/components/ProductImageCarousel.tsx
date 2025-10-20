@@ -31,12 +31,10 @@ export default function ProductImageCarousel({
   const getTranslateX = () => {
     if (total === 1) return "0";
 
-    // mobilna logika
     if (window.innerWidth < 768) {
       return `-${currentImageIndex * 100}%`;
     }
 
-    // desktop logika
     if (currentImageIndex === 0) return "-2rem";
     if (currentImageIndex === total - 1)
       return `calc(-${(total - 1) * 80}% - ${(total - 1) * 2}rem + 20%)`;
