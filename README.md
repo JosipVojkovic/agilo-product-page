@@ -17,23 +17,40 @@ Testni zadatak za Agilo – izrada Product stranice u Next.js, TypeScriptu i Tai
      npm install
      ```
    - Kopiraj `.env.template` u `.env` i unesi svoj `DATABASE_URL` (moraš imati kreiranu bazu podataka):
-     ```ts
+     ```
      DATABASE_URL=<tvoj_db_url>
      ```
-   - Pokreni backend server:
-     ```npm run dev```
-   - Nakon pokretanja backend servera, u konzoli će se prikazati publishable key koji trebaš koristiti za frontend.
-
-3. **Frontend**
-   - Uđi u frontend direktorij: `cd ../frontend`
-   - Instaliraj sve dependencije: `npm install`
-   - Kreiraj `.env.local` datoteku i dodaj:
+   - Pokreni migraciju i inicijaliziraj bazu: 
+     ```
+     npx medusa db:setup
+     
+     ```
+   - Pokreni seed za inicijalne podatke:
+     ``` 
+     npm run seed
+     ```
+     **Napomena**: Nakon seeda, u konzoli će biti prikazan **publishable key**. Možeš ga također pronaći u Admin panelu (http://localhost:9000/app) pod **Settings** → API Keys ili u bazi podataka, tablica       **api_key**.
+   - Postavi publishable key u frontend .env.local:
      ```
      NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
      NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=<publishable_key_koji_je_generiran>
      ```
-   - Pokreni frontend: `npm run dev`
-   - Prema defaultu, frontend se pokreće na portu 3000, osim ako u `.env.local` nije drugačije definirano.
+   - Pokreni backend server:
+     ```
+     npm run dev
+     ```
+
+3. **Frontend**
+   - U novom terminalu, uđi u frontend direktorij i instaliraj dependencies:
+     ```
+     cd frontend
+     npm install
+     ```
+   - Pokreni frontend:
+     ```
+     npm run dev
+     ```
+   Frontend se prema defaultu pokreće na http://localhost:3000.
 
 ## Procijenjeno vrijeme izrade
 Projekt je rađen otprilike 10-12 sati, uključujući integraciju Medusa backend sustava i implementaciju responzivne Product stranice.
