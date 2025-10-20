@@ -34,7 +34,7 @@ export const getProducts = async ({
         "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags",
       ...queryParams,
     },
-    cache: "reload",
+    cache: "no-store",
   });
 
   const nextPage = count > offset + limit ? pageParam + 1 : null;
@@ -47,4 +47,24 @@ export const getProducts = async ({
     nextPage,
     queryParams,
   };
+};
+
+export const getProductFromHandle = async (handle: string) => {
+  const regions = await getRegions();
+
+  const { products } = await sdk.client.fetch<{
+    products: HttpTypes.StoreProduct[];
+  }>(`/store/products`, {
+    method: "GET",
+    query: {
+      handle,
+      region_id: regions?.[0]?.id,
+      fields: "*variants.calculated_price,+variants.inventory_quantity",
+    },
+    cache: "reload",
+  });
+
+  const product = products.length ? products[0] : null;
+
+  return product;
 };

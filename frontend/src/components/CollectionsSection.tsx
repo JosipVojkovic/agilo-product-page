@@ -1,3 +1,7 @@
 export default function CollectionsSection() {
-  return <h1>Collections Section!</h1>;
+  return (
+    <section className="px-4 md:px-16">
+      <h1>Collections Section!</h1>
+    </section>
+  );
 }
