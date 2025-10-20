@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 h-[72px] border-b border-transparent 
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 h-[72px] border-b border-transparent md:px-16
         ${scrolled ? `bg-background border-b-[#F4F4F4]` : "bg-transparent"}
       `}
     >

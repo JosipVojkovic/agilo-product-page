@@ -42,35 +42,41 @@ export default function ProductInformation({
     : prices?.cheapestPrice?.calculated_price_number;
 
   return (
-    <div className="flex flex-col gap-8 px-4">
+    <div className="flex flex-col gap-8 px-4 md:w-1/2 md:gap-16">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-2">
           <p className="text-[#808080]">{product?.collection?.title}</p>
-          <h3 className="text-custom-md font-semibold">{product?.title}</h3>
+          <h3 className="text-[24px] font-semibold md:text-[40px]">
+            {product?.title}
+          </h3>
           <p className="text-custom-md">
             {prices?.variantPrice ? `€${shownPrice}` : `From €${shownPrice}`}
           </p>
         </div>
 
-        <p className="text-[#808080] text-custom-xs">{product?.description}</p>
+        <p className="text-[#808080] text-[12px] md:text-[16px] md:text-foreground">
+          {product?.description}
+        </p>
       </div>
 
-      <CustomSelect
-        defaultText="Choose Material"
-        option={customSelectOption}
-        selectedValue={selectedOptions.material.value}
-        handleOptionChange={(valueId, value) =>
-          handleOptionChange("material", valueId, value)
-        }
-      />
+      <div className="flex flex-col gap-8">
+        <CustomSelect
+          defaultText="Choose Material"
+          option={customSelectOption}
+          selectedValue={selectedOptions.material.value}
+          handleOptionChange={(valueId, value) =>
+            handleOptionChange("material", valueId, value)
+          }
+        />
 
-      <ColorPicker
-        selectedOptions={selectedOptions}
-        option={colorOption}
-        handleOptionChange={(valueId, value) =>
-          handleOptionChange("color", valueId, value)
-        }
-      />
+        <ColorPicker
+          selectedOptions={selectedOptions}
+          option={colorOption}
+          handleOptionChange={(valueId, value) =>
+            handleOptionChange("color", valueId, value)
+          }
+        />
+      </div>
 
       <AddToCartControls
         variant={variant}

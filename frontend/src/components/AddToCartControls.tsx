@@ -42,34 +42,38 @@ export default function AddToCartControls({
   };
 
   const isOptionsSelected = Boolean(
-    selectedOptions.material && selectedOptions.color
+    selectedOptions.material?.value && selectedOptions.color?.value
   );
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-center items-center gap-4 rounded border border-[#D1D1D1] px-6 py-2">
-        <Minus
-          className={`w-[24px] h-[24px] cursor-pointer ${
-            quantity <= 1 ? "text-[#D1D1D1]" : ""
+      <div className="flex flex-col gap-4 md:flex-row">
+        <div className="flex justify-center items-center gap-4 rounded border border-[#D1D1D1] px-6 py-2">
+          <Minus
+            className={`w-[24px] h-[24px] cursor-pointer ${
+              quantity <= 1 ? "text-[#D1D1D1]" : ""
+            }`}
+            onClick={handleDecreaseQuantity}
+          />
+          <span className="text-[20px]">{quantity}</span>
+          <Plus
+            className="w-[24px] h-[24px] cursor-pointer"
+            onClick={handleIncreaseQuantity}
+          />
+        </div>
+
+        <button
+          className={`flex justify-center items-center rounded text-background bg-foreground border px-6 py-2 h-[48px] md:w-full ${
+            !isOptionsSelected ? "cursor-default" : "cursor-pointer"
           }`}
-          onClick={handleDecreaseQuantity}
-        />
-        <span className="text-[20px]">{quantity}</span>
-        <Plus
-          className="w-[24px] h-[24px] cursor-pointer"
-          onClick={handleIncreaseQuantity}
-        />
+          disabled={!isOptionsSelected}
+          onClick={handleAddToCart}
+        >
+          {isOptionsSelected ? "Add to cart" : "Select variant"}
+        </button>
       </div>
-      <button
-        className={`flex justify-center items-center rounded text-background bg-foreground border px-6 py-2 h-[48px] ${
-          !isOptionsSelected ? "cursor-default" : "cursor-pointer"
-        }`}
-        disabled={!isOptionsSelected}
-        onClick={handleAddToCart}
-      >
-        {isOptionsSelected ? "Add to cart" : "Select variant"}
-      </button>
-      <p className="flex items-center text-custom-xs text-[#808080]">
+
+      <p className="flex items-center text-[12px] text-[#808080] md:text-[16px]">
         Estimate delivery 2-3 days
       </p>
     </div>
