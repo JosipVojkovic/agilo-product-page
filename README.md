@@ -53,11 +53,11 @@ Testni zadatak za Agilo – izrada Product stranice u Next.js, TypeScriptu i Tai
    Frontend se prema defaultu pokreće na http://localhost:3000.
 
 ## Procijenjeno vrijeme izrade
-Projekt je rađen otprilike 10-12 sati, uključujući integraciju Medusa backend sustava i implementaciju responzivne Product stranice.
+Projekt je rađen otprilike ukupno 32 sata kroz 8 dana, uključujući integraciju Medusa backend sustava i implementaciju responzivne Product stranice.
 
 ## Najzahtjevniji dijelovi zadatka
-- **Integracija Medusa backend sustava**: Postavljanje servera i konfiguracija `.env` datoteka.
+- **Integracija Medusa backend sustava**: Postavljanje servera i konfiguracija.
 - **Dynamic Product Page u Next.js**: Prikaz podataka iz API-ja te rukovanje async requestima.
-- **TailwindCSS layout i responzivnost**: Implementacija modernog dizajna i prilagodba različitim veličinama ekrana.
+- **TailwindCSS layout i responzivnost**: Implementacija modernog dizajna, posebno responzivnog prikaza niza slika proizvoda – drugačiji izgled za mobitele, drugačiji za veće uređaje.
 
 
