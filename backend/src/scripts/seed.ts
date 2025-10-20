@@ -15,6 +15,7 @@ import {
   createShippingProfilesWorkflow,
   createStockLocationsWorkflow,
   createTaxRegionsWorkflow,
+  createUsersWorkflow,
   linkSalesChannelsToApiKeyWorkflow,
   linkSalesChannelsToStockLocationWorkflow,
   updateStoresWorkflow,
@@ -362,13 +363,13 @@ export default async function seedDemoData({ container }: ExecArgs) {
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "/static/1760446178782-Image.svg",
+              url: "http://localhost:9000/static/1760446178782-Image.svg",
             },
             {
-              url: "/static/1760446178785-Image02.svg",
+              url: "http://localhost:9000/static/1760446178785-Image02.svg",
             },
             {
-              url: "/static/1760446593172-Image02.svg",
+              url: "http://localhost:9000/static/1760446593172-Image02.svg",
             },
           ],
           options: [
@@ -384,7 +385,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           variants: [
             {
               title: "Linen / Red",
-              sku: "PALOMA-HAVEN-LINEN-RED",
+              sku: "PALOMA-HAVEN-4-LINEN-RED",
               options: {
                 Material: "Linen",
                 Color: "Red",
@@ -402,7 +403,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
             },
             {
               title: "Linen / Blue",
-              sku: "PALOMA-HAVEN-LINEN-LIGHT-BLUE",
+              sku: "PALOMA-HAVEN-4-LINEN-LIGHT-BLUE",
               options: {
                 Material: "Linen",
                 Color: "Blue",
@@ -420,7 +421,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
             },
             {
               title: "Linen / Green",
-              sku: "PALOMA-HAVEN-BOUCLE-GREEN",
+              sku: "PALOMA-HAVEN-4-BOUCLE-GREEN",
               options: {
                 Material: "Linen",
                 Color: "Green",
@@ -456,10 +457,10 @@ export default async function seedDemoData({ container }: ExecArgs) {
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "/static/1760560978108-6620ea897d26d568997efa34abc517d9177df473 (1).jpg",
+              url: "http://localhost:9000/static/1760446178785-Image02.svg",
             },
             {
-              url: "/static/1760446178785-Image02.svg",
+              url: "http://localhost:9000/static/1760446178785-Image02.svg",
             },
           ],
           options: [
@@ -475,7 +476,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           variants: [
             {
               title: "Linen / Gray",
-              sku: "PALOMA-HAVEN-LINEN-GRAY",
+              sku: "PALOMA-HAVEN-3-LINEN-GRAY",
               options: {
                 Material: "Linen",
                 Color: "Gray",
@@ -493,7 +494,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
             },
             {
               title: "Linen / Light Gray",
-              sku: "PALOMA-HAVEN-LINEN-LIGHT-GRAY",
+              sku: "PALOMA-HAVEN-3-LINEN-LIGHT-GRAY",
               options: {
                 Material: "Linen",
                 Color: "Light Gray",
@@ -511,7 +512,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
             },
             {
               title: "Boucle / Gray",
-              sku: "PALOMA-HAVEN-BOUCLE-GRAY",
+              sku: "PALOMA-HAVEN-3-BOUCLE-GRAY",
               options: {
                 Material: "Boucle",
                 Color: "Gray",
@@ -529,7 +530,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
             },
             {
               title: "Boucle / Light Gray",
-              sku: "PALOMA-HAVEN-BOUCLE-LIGHT-GRAY",
+              sku: "PALOMA-HAVEN-3-BOUCLE-LIGHT-GRAY",
               options: {
                 Material: "Boucle",
                 Color: "Light Gray",
@@ -565,16 +566,16 @@ export default async function seedDemoData({ container }: ExecArgs) {
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "/static/1760560978108-6620ea897d26d568997efa34abc517d9177df473 (1).jpg",
+              url: "http://localhost:9000/static/1760560978108-6620ea897d26d568997efa34abc517d9177df473%20(1).jpg",
             },
             {
-              url: "/static/1760446178785-Image02.svg",
+              url: "http://localhost:9000/static/1760446178785-Image02.svg",
             },
             {
-              url: "/static/1760740407012-Image.svg",
+              url: "http://localhost:9000/static/1760740407012-Image.svg",
             },
             {
-              url: "/static/1760560944398-Image (1).svg",
+              url: "http://localhost:9000/static/1760560944398-Image%20(1).svg",
             },
           ],
           options: [
@@ -590,7 +591,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           variants: [
             {
               title: "Linen / Red",
-              sku: "PALOMA-HAVEN-LINEN-RED",
+              sku: "PALOMA-HAVEN-2-LINEN-RED",
               options: {
                 Material: "Linen",
                 Color: "Red",
@@ -608,7 +609,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
             },
             {
               title: "Linen / Blue",
-              sku: "PALOMA-HAVEN-LINEN-LIGHT-BLUE",
+              sku: "PALOMA-HAVEN-2-LINEN-LIGHT-BLUE",
               options: {
                 Material: "Linen",
                 Color: "Blue",
@@ -626,7 +627,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
             },
             {
               title: "Linen / Green",
-              sku: "PALOMA-HAVEN-BOUCLE-GREEN",
+              sku: "PALOMA-HAVEN-2-BOUCLE-GREEN",
               options: {
                 Material: "Linen",
                 Color: "Green",
@@ -662,10 +663,10 @@ export default async function seedDemoData({ container }: ExecArgs) {
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "/static/1760560978108-6620ea897d26d568997efa34abc517d9177df473 (1).jpg",
+              url: "http://localhost:9000/static/1760560978108-6620ea897d26d568997efa34abc517d9177df473%20(1).jpg",
             },
             {
-              url: "/static/1760446178785-Image02.svg",
+              url: "http://localhost:9000/static/1760446178785-Image02.svg",
             },
           ],
           options: [
@@ -785,6 +786,8 @@ export default async function seedDemoData({ container }: ExecArgs) {
       inventory_levels: inventoryLevels,
     },
   });
+
+  console.log(publishableApiKey.token);
 
   logger.info("Finished seeding inventory levels data.");
 }

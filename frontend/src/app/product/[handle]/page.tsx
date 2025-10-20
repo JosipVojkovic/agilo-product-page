@@ -44,7 +44,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <main className="flex flex-col mt-[72px] md:mt-[144px]">
+    <main className="flex flex-col mt-[72px] mb-[72px] md:mt-[144px]">
       <section className="flex flex-col gap-8 md:flex-row md:px-16">
         <ProductImageCarousel product={product} />
 
